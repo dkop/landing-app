@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'jsonrpc' => [
+        'base_uri' => 'http://activityapp_laravel.test_1:80/api/v1/jsonrpc',
+        'token' => 'TOKEN'
+    ],
+
 ];

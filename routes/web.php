@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\LogActivityMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(LogActivityMiddleware::class)->group(function() {
+
+    Route::get('/admin/activity', [Controller::class, 'activity']);
+
+    Route::get('{any?}', function (\Illuminate\Http\Request $request) {
+        return 'Hello from ' . $request->url();
+    });
+
 });
